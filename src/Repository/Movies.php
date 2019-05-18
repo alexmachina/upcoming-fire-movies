@@ -23,18 +23,27 @@ class Movies {
 
   public function getUpcoming() {
     $uri = $this::UPCOMING_URI;
-    $res = $this->client->request('GET', $this->buildURIParams($uri));
-    $movies = json_decode($res->getBody());
-    $poster = $this->fetchPoster($movies->results[0]);
-
-    return $movies;
+    $response = $this->client->request('GET', $this->buildURIParams($uri));
+    $data = json_decode($response->getBody());
+    $data->results = $this->appendPosters($data->results);
+  
+    return $data;
   }
 
-  public function fetchPoster($movie) {
+  private function fetchPoster($movie) {
     $url = $this->buildPosterURL($movie->poster_path);
-    dump($url);
     return $url;
+  }
 
+  private function appendPosters($movies) {
+    $movies_with_poster = array();
+
+    foreach($movies as $movie) {
+      $movie->poster = $this->fetchPoster($movie);
+      array_push($movies_with_poster, $movie);
+    }
+
+    return $movies_with_poster;
   }
 
   private function buildPosterURL($poster_path) {
