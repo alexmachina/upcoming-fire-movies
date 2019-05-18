@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/main", name="main")
+     * @Route("api/movies/upcoming", name="Upcoming")
      */
     public function index()
     {
