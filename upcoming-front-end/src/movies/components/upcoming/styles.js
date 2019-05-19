@@ -6,6 +6,10 @@ const styles = () => ({
     backgroundColor: '#252525',
     padding: '24px',
   },
+
+  movies_container: {
+    paddingTop: '44px',
+  }
 });
 
 export default withStyles(styles);

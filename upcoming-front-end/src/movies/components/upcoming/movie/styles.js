@@ -9,8 +9,14 @@ const styles = () => ({
   title: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: '12px',
-  }
+    fontSize: '14px',
+  },
+
+  release_date: {
+    color: '#a6a6a6',
+    fontSize: '13px',
+    marginTop: '4px',
+  },
 });
 
 export default withStyles(styles);

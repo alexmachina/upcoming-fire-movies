@@ -4,14 +4,15 @@ import Typography from '@material-ui/core/Typography';
 import styled from './styles';
 
 const Movie = ({
-  classes, title, poster,
+  classes, title, poster, release_date,
 }) => (
-  <Grid container>
-    <Grid item xs={12}>
+  <Grid container spacing={16}>
+    <Grid item xs={4}>
       <img className={classes.poster} src={poster} />
     </Grid>
-    <Grid item xs={12}>
+    <Grid item xs={8}>
       <Typography variant="h4" className={classes.title}>{title}</Typography>
+      <Typography variant="subtitle" className={classes.release_date}>{release_date}</Typography>
     </Grid>
   </Grid>
 )

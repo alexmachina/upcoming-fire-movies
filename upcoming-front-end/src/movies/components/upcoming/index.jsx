@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Movie from './movie';
+import TopBar from './topbar';
 import { getMovies } from '../../store/services/api';
 import styled from './styles';
 
@@ -25,12 +26,13 @@ class App extends Component {
  
     return (
       <Grid container className={classes.root}>
+        <TopBar />
         <CssBaseline />
-        <Grid item className={classes.moviesContainer}>
+        <Grid item className={classes.movies_container}>
           <Grid container className={classes.moviesList} spacing={16}>
-            {movies.map(({ poster, title, id }) => (
-              <Grid item xs={6} sm={4} key={id}>
-                <Movie title={title} poster={poster} />
+            {movies.map(({ poster, title, id, release_date }) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
+                <Movie title={title} poster={poster} release_date={release_date} />
               </Grid>
             ))}
           </Grid>
