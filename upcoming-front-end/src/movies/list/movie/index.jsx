@@ -12,7 +12,7 @@ const Movie = ({
     </Grid>
     <Grid item xs={8}>
       <Typography variant="h4" className={classes.title}>{title}</Typography>
-      <Typography variant="subtitle" className={classes.release_date}>{release_date}</Typography>
+      <Typography variant="subtitle1" className={classes.release_date}>{release_date}</Typography>
     </Grid>
   </Grid>
 )

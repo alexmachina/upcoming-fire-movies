@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Movie from './movie';
 import TopBar from './topbar';
-import { getMovies } from '../store/services/api';
+import { fetchMovies } from '../store/ducks/movies';
 import styled from './styles';
 
-class App extends Component {
+class List extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      movies: [],
-    };
   }
   
   async componentDidMount() {
-    const movies = await getMovies();
-    this.setState({ movies });
+    this.props.dispatch(fetchMovies());
   }
 
   render() {
-    const { movies } = this.state;
-    const { classes } = this.props;
+    const { classes, movies } = this.props;
  
     return (
       <Grid container className={classes.root}>
@@ -42,4 +38,7 @@ class App extends Component {
   }
 }
 
-export default styled(App);
+const mapStateToProps = state => ({ movies: state.movies.payload });
+const StyledList = styled(List);
+
+export default connect(mapStateToProps)(StyledList);

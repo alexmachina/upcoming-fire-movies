@@ -1,8 +1,8 @@
 import React from 'react';
-import Upcoming from './upcoming';
+import UpcomingMovies from './list';
 
 const Movies = () => (
-  <Upcoming />
+  <UpcomingMovies />
 );
 
-export default Upcoming;
+export default Movies;

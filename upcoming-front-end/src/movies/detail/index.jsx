@@ -12,7 +12,7 @@ const MovieDetail = ({
     </Grid>
     <Grid item xs={6}>
       <Grid container>
-        <Typography variant="title">{title}</Typography>
+        <Typography variant="subtitle1">{title}</Typography>
       </Grid>
     </Grid>
   </Grid>

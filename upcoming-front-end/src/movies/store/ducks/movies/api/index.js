@@ -18,4 +18,3 @@ function Movie({
 function Movies({ results }) {
   return results.map(Movie);
 }
-
