@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Movie from './movie';
 import TopBar from './topbar';
-import { getMovies } from '../../store/services/api';
+import { getMovies } from '../store/services/api';
 import styled from './styles';
 
 class App extends Component {
