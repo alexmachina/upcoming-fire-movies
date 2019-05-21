@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Genre from './genre';
+import Poster from './poster';
 import styled from './styles';
 
 const Movie = ({
@@ -9,7 +10,7 @@ const Movie = ({
 }) => (
   <Grid container spacing={16}>
     <Grid item xs={4}>
-      <img className={classes.poster} src={poster} />
+      <Poster url={poster} />
     </Grid>
     <Grid item xs={8}>
       <Typography variant="h4" className={classes.title}>{title}</Typography>

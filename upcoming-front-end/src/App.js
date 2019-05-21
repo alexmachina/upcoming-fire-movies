@@ -21,6 +21,7 @@ const App = () => (
   <Provider store={store}>
     <BrowserRouter>
       <Route exact path="/" component={Movies} />
+      <Route path="/query/:query" component={Movies} />
       <Route path="/movie/:id" component={MovieDetail} />
     </BrowserRouter>
   </Provider>
