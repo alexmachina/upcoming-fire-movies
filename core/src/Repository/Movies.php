@@ -123,7 +123,7 @@ class Movies {
 
   private function buildURIParams($uri, $page = 1) {
     return $uri . '?api_key=' . $this::API_KEY . '&language=en-US&page=' . $page
-      . '&sort_by=popularity.desc&release_date.gte=2019-05-01&release_date.lte=2020-01-01';
+      . '&sort_by=popularity.desc&primary_release_date.gte=2019-05-05&primary_release_date.lte=2020-01-01&year=2019';
   }
 }
 ?>
