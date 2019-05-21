@@ -7,7 +7,7 @@ use App\Repository\Config;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-
+// TODO: Create file for Genre operations
 class Genre {
   public $id;
   public $name;
@@ -85,7 +85,7 @@ class Movies {
     $normalized = array();
 
     foreach($genres as $genre) {
-      $normalized[$genre->id] = $genre->name; 
+      $normalized[$genre->id] = $genre; 
     }
 
     return $normalized;

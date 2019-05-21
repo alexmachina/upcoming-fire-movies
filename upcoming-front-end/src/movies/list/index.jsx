@@ -26,9 +26,9 @@ class List extends Component {
         <CssBaseline />
         <Grid item className={classes.movies_container}>
           <Grid container className={classes.moviesList} spacing={16}>
-            {movies.map(({ poster, title, id, release_date }) => (
+            {movies.map(({ poster, title, id, release_date, genres }) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
-                <Movie title={title} poster={poster} release_date={release_date} />
+                <Movie id={id} title={title} poster={poster} release_date={release_date} genres={genres}/>
               </Grid>
             ))}
           </Grid>

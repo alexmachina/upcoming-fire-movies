@@ -8,15 +8,19 @@ const styles = () => ({
 
   title: {
     color: '#fff',
-    fontWeight: 'bold',
     fontSize: '14px',
   },
 
   release_date: {
     color: '#a6a6a6',
     fontSize: '13px',
-    marginTop: '4px',
+    marginTop: '8px',
   },
+
+  genres: {
+    marginTop: '12px',
+    display: 'inline-flex',
+  }
 });
 
 export default withStyles(styles);

@@ -8,10 +8,10 @@ export async function getMovies() {
 }
 
 function Movie({
-  id, title, poster, overview, release_date
+  id, title, poster, overview, release_date, genres
 }) {
   return {
-    id, title, poster, overview, release_date
+    id, title, poster, overview, release_date, genres
   };
 }
 
