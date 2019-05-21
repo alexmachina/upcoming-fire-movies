@@ -23,7 +23,8 @@ class Movies {
   const API_KEY = '1f54bd990f1cdfb230adb312546d765d';
   
   const GENRES_URI = '/3/genre/movie/list';
-  const UPCOMING_URI = '/3/discover/movie';
+  const DISCOVER_URL = '/3/discover/movie';
+  const QUERY_URL = '/3/search/movie';
 
   private $client;
   private $config;
@@ -36,14 +37,18 @@ class Movies {
     $this->config = new Config();
   }
 
-  public function getUpcoming($page = 1) {
-    $uri = $this::UPCOMING_URI;
-    $response = $this->client->request('GET', $this->buildURIParams($uri, $page));
-    $data = json_decode($response->getBody());
-    $data->results = $this->appendPosters($data->results);
-    $this->appendGenres($data->results);
+  public function getUpcoming($page = 1, $query = '') {
+    $endpoint = $this::DISCOVER_URL;
+    if ($query != '') {
+      $endpoint = $this::QUERY_URL;
+    }
+
+    $reqUrl = $this->buildRequestURL($endpoint, $page, $query);
+    $responseData = json_decode($this->client->request('GET', $reqUrl)->getBody());
+    $this->appendPosters($responseData->results);
+    $this->appendGenres($responseData->results);
   
-    return $data;
+    return $responseData;
   }
 
   private function appendGenres($movies) {
@@ -110,10 +115,7 @@ class Movies {
 
     foreach($movies as $movie) {
       $movie->poster = $this->fetchPoster($movie);
-      array_push($movies_with_poster, $movie);
     }
-
-    return $movies_with_poster;
   }
 
   private function buildPosterURL($poster_path) {
@@ -121,10 +123,11 @@ class Movies {
     return $config->BASE_URL . $config->DEFAULT_POSTER_SIZE . $poster_path;
   }
 
-  private function buildURIParams($uri, $page = 1) {
+  private function buildRequestURL($uri, $page = 1, $query) {
     $today = date('Y-m-d');
-    return $uri . '?api_key=' . $this::API_KEY . '&language=en-US&page=' . $page
-      . '&sort_by=popularity.desc&primary_release_date.gte=' . $today . '&primary_release_date.lte=2020-01-01&year=2019';
+    $url = $uri . '?api_key=' . $this::API_KEY . '&language=en-US&page=' . $page
+      . '&sort_by=popularity.desc&primary_release_date.gte=' . $today . '&primary_release_date.lte=2020-01-01&year=2019&query=' . $query;
+    return $url;
   }
 }
 ?>

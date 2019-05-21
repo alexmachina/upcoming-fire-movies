@@ -17,8 +17,9 @@ class MainController extends AbstractController
     public function index(Request $req)
     {
       $page = $req->query->get('page');
+      $query = $req->query->get('query');
       $movies = new Movies();
-      $upcoming = $movies->getUpcoming($page);
+      $upcoming = $movies->getUpcoming($page, $query);
       return new JsonResponse($upcoming);
     }
 }
