@@ -23,7 +23,7 @@ class Movies {
   const API_KEY = '1f54bd990f1cdfb230adb312546d765d';
   
   const GENRES_URI = '/3/genre/movie/list';
-  const UPCOMING_URI = '/3/movie/upcoming';
+  const UPCOMING_URI = '/3/discover/movie';
 
   private $client;
   private $config;
@@ -36,9 +36,9 @@ class Movies {
     $this->config = new Config();
   }
 
-  public function getUpcoming() {
+  public function getUpcoming($page = 1) {
     $uri = $this::UPCOMING_URI;
-    $response = $this->client->request('GET', $this->buildURIParams($uri));
+    $response = $this->client->request('GET', $this->buildURIParams($uri, $page));
     $data = json_decode($response->getBody());
     $data->results = $this->appendPosters($data->results);
     $this->appendGenres($data->results);
@@ -122,7 +122,8 @@ class Movies {
   }
 
   private function buildURIParams($uri, $page = 1) {
-    return $uri . '?api_key=' . $this::API_KEY . '&language=en-US&page=' . $page;
+    return $uri . '?api_key=' . $this::API_KEY . '&language=en-US&page=' . $page
+      . '&sort_by=popularity.desc&release_date.gte=2019-05-01&release_date.lte=2020-01-01';
   }
 }
 ?>
