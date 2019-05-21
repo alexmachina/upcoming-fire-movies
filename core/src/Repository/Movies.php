@@ -122,8 +122,9 @@ class Movies {
   }
 
   private function buildURIParams($uri, $page = 1) {
+    $today = date('Y-m-d');
     return $uri . '?api_key=' . $this::API_KEY . '&language=en-US&page=' . $page
-      . '&sort_by=popularity.desc&primary_release_date.gte=2019-05-05&primary_release_date.lte=2020-01-01&year=2019';
+      . '&sort_by=popularity.desc&primary_release_date.gte=' . $today . '&primary_release_date.lte=2020-01-01&year=2019';
   }
 }
 ?>
