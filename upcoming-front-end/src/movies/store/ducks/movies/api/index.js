@@ -2,8 +2,8 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
 
-export async function getMovies() {
-  const { data } = await axios.get('/movies/upcoming')
+export async function getMovies(page) {
+  const { data } = await axios.get(`/movies/upcoming?page=${page}`)
   return Movies(data);
 }
 
