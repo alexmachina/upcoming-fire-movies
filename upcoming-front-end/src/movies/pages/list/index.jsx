@@ -15,11 +15,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import Movie from './movie';
-import Loader from './loader';
+import Movie from './components/movie';
+import Loader from './components/loader';
 
 import InfiniteScroll from 'react-infinite-scroller';
-import { fetchMovies } from '../store/ducks/movies';
+import { fetchMovies } from './ducks';
 
 import styled from './styles';
 
@@ -66,7 +66,6 @@ class List extends Component {
     const { query, page, loading, dispatch } = this.props;
     if (!loading) {
       dispatch(fetchMovies(page + 1, query));
-      console.log('onLoadMore')
     }
 
   }
@@ -88,7 +87,6 @@ class List extends Component {
 
     if (query) {
       const nextUrl = `/?query=${query}`;
-      console.log('submit');
       dispatch(fetchMovies(1, query, true));
       push(nextUrl);
     }
@@ -96,18 +94,10 @@ class List extends Component {
 
   render() {
     const { total_pages, classes, loading, movies, hasMore, onLoadMore, page } = this.props;
-    console.log(hasMore, total_pages);
 
     return (
       <Grid container className={classes.root}>
         <CssBaseline />
-        <Grid item xs={12} className={classes.title_container}>
-          <Link to="/" className={classes.linkHome}>
-            <Typography variant="h1" className={classes.title}>
-              upcoming <WhatsHotIcon className={classes.fireIcon} />
-              movies</Typography>
-          </Link>
-        </Grid>
         <Grid item xs={12} className={classes.search_container}>
           <form className={classes.form} onSubmit={this.onQuerySubmit}>
             <Input

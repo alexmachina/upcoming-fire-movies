@@ -1,8 +1,22 @@
 import React from 'react';
-import UpcomingMovies from './list';
+import UpcomingMoviesList from './pages/list';
+import Grid from '@material-ui/core/Grid';
+import Title from './commons/title';
+import { withStyles } from '@material-ui/core/styles';
 
-const Movies = () => (
-  <UpcomingMovies />
+const styles = () => ({
+  root: {
+    width: '100%',
+    backgroundColor: '#252525',
+    padding: '24px',
+  }
+});
+
+const Movies = ({ classes }) => (
+  <Grid container className={classes.root}>
+    <Title />
+    <UpcomingMoviesList />
+  </Grid>
 );
 
-export default Movies;
+export default withStyles(styles)(Movies);
