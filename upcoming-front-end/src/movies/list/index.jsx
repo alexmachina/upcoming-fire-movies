@@ -36,18 +36,19 @@ class List extends Component {
   componentDidUpdate(prevProps) {
     const {
       location: { search },
-      dispatch
+      dispatch, loading
     } = this.props;
 
     const { 
       location: { search: prevSearch },
     } = prevProps;
     
-    
-    console.log(prevSearch, search);
-    if (search !== prevSearch) {
-      const { query } = queryString.parse(search); 
-      dispatch(fetchMovies(1, query));
+
+    const { query } = queryString.parse(search); 
+    const { query: prevQuery } = queryString.parse(prevSearch);
+
+    if (query !== prevQuery && !loading) {
+      dispatch(fetchMovies(1, query, true));
     }
   }
 
@@ -58,12 +59,16 @@ class List extends Component {
     } = this.props;
 
     const { query } = queryString.parse(search); 
-    dispatch(fetchMovies(1, query));
+    dispatch(fetchMovies(1, query, true));
   }
 
   async onLoadMore() {
-    const { page, loading, dispatch } = this.props;
-    !loading && dispatch(fetchMovies(page + 1));
+    const { query, page, loading, dispatch } = this.props;
+    if (!loading) {
+      dispatch(fetchMovies(page + 1, query));
+      console.log('onLoadMore')
+    }
+
   }
 
   formatDate(release_date) {
@@ -83,13 +88,15 @@ class List extends Component {
 
     if (query) {
       const nextUrl = `/?query=${query}`;
-      dispatch(fetchMovies(1, query));
+      console.log('submit');
+      dispatch(fetchMovies(1, query, true));
       push(nextUrl);
     }
   }
 
   render() {
-    const { classes, loading, movies, hasMore, onLoadMore, page } = this.props;
+    const { total_pages, classes, loading, movies, hasMore, onLoadMore, page } = this.props;
+    console.log(hasMore, total_pages);
 
     return (
       <Grid container className={classes.root}>
@@ -126,7 +133,6 @@ class List extends Component {
             loader={<Loader />}>
 
             <Grid container className={classes.moviesList} spacing={16}>
-              {loading && <Loader />}
               {movies.map(({ poster, title, id, release_date, genres }) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
                   <Movie
@@ -145,11 +151,11 @@ class List extends Component {
   }
 }
 
-const mapStateToProps = ({ movies: { payload: movies, page, loading, query, total_pages }}) => ({
+const mapStateToProps = ({ movies: { payload: movies, page, loading, query, total_pages=0 }}) => ({
   movies,
   page, 
   query,
-  hasMore: page < total_pages,
+  hasMore: page < total_pages || total_pages === 0,
   loading,
   total_pages
 });

@@ -40,7 +40,7 @@ class Genre {
     }
 
   private function fetchGenres() {
-    $url = $this->config::BASE_URI . $this::GENRES_URI . '?api_key=' . $this->config::API_KEY;
+    $url = $this->config::BASE_URI . $this::GENRES_URI . '?api_key=' . $this->config::API_KEY . '&language=en-US';
     $response = $this->config->client->request('GET', $url);
 
     $genres = json_decode($response->getBody())->genres;
@@ -67,7 +67,7 @@ class Genre {
     $cache = new FileSystemAdapter();
     $genres = $cache->get('genres', function (ItemInterface $item) {
       // Expire after 24 hours.
-      $item->expiresAfter(2);
+      $item->expiresAfter(3600);
 
       $computedValue = $this->fetchGenres();
       return $computedValue;
