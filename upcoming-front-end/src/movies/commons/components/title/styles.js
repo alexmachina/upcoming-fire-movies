@@ -3,14 +3,17 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = () => ({
   title: {
     color: '#fff',
-    fontSize: '16px',
-    textDecoration: 'none',
-    fontFamily: 'Roboto'
+    fontSize: '36px'
   },
 
-  genres: {
-    marginTop: '12px',
-    display: 'inline-flex'
+  linkHome: {
+    textDecoration: 'none'
+  },
+
+  fireIcon: {
+    color: 'orange',
+    marginLeft: '4px',
+    marginRight: '8px'
   }
 })
 

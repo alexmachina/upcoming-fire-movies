@@ -22,4 +22,15 @@ class MainController extends AbstractController
       $upcoming = $movies->getUpcoming($page, $query);
       return new JsonResponse($upcoming);
     }
+
+    /**
+     * @Route("api/movies/{id}", name="Movie")
+     */
+    public function detail(Request $req)
+    {
+      $id = $req->get('id');
+      $movies = new Movies();
+      $movie = $movies->getDetail($id);
+      return new JsonResponse($movie);
+    }
 }

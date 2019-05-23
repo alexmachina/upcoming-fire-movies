@@ -29,15 +29,32 @@ class Genre {
 
   public function appendGenres($movies) {
     foreach($movies as $movie) {
-      $genres = array();
-      foreach($movie->genre_ids as $genre_id) {
-        $genre_name = $this->getGenreFromCache($genre_id);
-        array_push($genres, $genre_name);
-      }
+      $this->appendGenre($movie);
+    }
+  }
 
-      $movie->genres = $genres;
+  public function appendGenre($movie) {
+    $genres = array();
+
+   foreach($movie->genre_ids as $genre_id) {
+      $genre_name = $this->getGenreFromCache($genre_id);
+      array_push($genres, $genre_name);
     }
+
+    $movie->genres = $genres;
+  }
+
+  public function appendDetailGenres($movie) {
+    $genres = array();
+
+    foreach($movie->genres as $genre) {
+      $genre_name = $this->getGenreFromCache($genre->id);
+      array_push($genres, $genre_name);
     }
+
+    $movie->genres = $genres;
+
+  }
 
   private function fetchGenres() {
     $url = $this->config::BASE_URI . $this::GENRES_URI . '?api_key=' . $this->config::API_KEY . '&language=en-US';

@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = () => ({
   root: {
@@ -8,14 +8,18 @@ const styles = () => ({
     padding: '2px 4px',
     marginRight: '8px',
     marginBottom: '8px',
-    borderRadius: '4px',
+    borderRadius: '4px'
 
   },
   name: {
     display: 'flex',
     color: '#fff',
-    fontSize: '12px',
+    fontSize: '12px'
   },
-});
+  big: {
+    fontSize: '16px'
+  },
 
-export default withStyles(styles);
+})
+
+export default withStyles(styles)

@@ -1,14 +1,26 @@
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = () => ({
   root: {
-    backgroundColor: '#252525',
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  movie: {
+    display: 'flex',
+    justifyContent: 'center'
   },
 
+  list: {
+    margin: '24px'
+  },
+
+  title: {
+    color: '#fff'
+  },
   poster: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-});
+    display: 'flex',
+    justifyContent: 'center'
+  }
+})
 
-export default withStyles(styles);
+export default withStyles(styles)

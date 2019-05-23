@@ -15,13 +15,13 @@ class Poster {
     $movies_with_poster = array();
 
     foreach($movies as $movie) {
-      $movie->poster = $this->fetchPoster($movie);
+      $this->appendPoster($movie);
     }
   }
 
-  private function fetchPoster($movie) {
+  public function appendPoster($movie) {
     $url = $this->buildPosterURL($movie->poster_path);
-    return $url;
+    $movie->poster = $url;
   }
 
   private function buildPosterURL($poster_path) {

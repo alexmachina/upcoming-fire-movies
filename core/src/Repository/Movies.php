@@ -6,6 +6,7 @@ use App\Repository\Config;
 class Movies {
   const DISCOVER_URL = '/3/discover/movie';
   const QUERY_URL = '/3/search/movie';
+  const DETAIL_URL = '/3/movie';
 
   private $config;
   private $genre;
@@ -29,6 +30,16 @@ class Movies {
     $this->poster->appendPosters($responseData->results);
     $this->genre->appendGenres($responseData->results);
   
+    return $responseData;
+  }
+
+  public function getDetail($id) {
+    $reqUrl = $this::DETAIL_URL . '/' . $id . '?api_key=' . $this->config::API_KEY . '&language=en-US';
+    
+    $responseData = json_decode($this->config->client->request('GET', $reqUrl)->getBody());
+    $this->poster->appendPoster($responseData);
+    $this->genre->appendDetailGenres($responseData);
+
     return $responseData;
   }
 

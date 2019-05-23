@@ -1,13 +1,13 @@
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = () => ({
   movies_container: {
-    paddingTop: '44px',
+    paddingTop: '44px'
   },
 
   form: {
     width: '100%',
-    justifyContent:'center',
+    justifyContent: 'center',
     display: 'flex',
     flexWrap: 'wrap'
   },
@@ -17,7 +17,7 @@ const styles = () => ({
     borderBottom: '1px solid white',
     color: 'white',
     marginTop: '16px',
-    marginRight: '16px',
+    marginRight: '16px'
   },
 
   button: {
@@ -29,6 +29,6 @@ const styles = () => ({
       color: 'white'
     }
   }
-});
+})
 
-export default withStyles(styles);
+export default withStyles(styles)
