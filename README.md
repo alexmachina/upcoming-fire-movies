@@ -2,6 +2,7 @@
 This project is a test for a Fullstack Developer position at
 [Arctouch](arctouch.com)
 
+The live version is here: http://alexmachina.mooo.com
 ## Features
 The overall goal is to build a MVP of a movie's webapp.
 For now, the app must feature a list of upcoming movies, where the user is able to see a list of upcoming movies, query for upcoming movies and see it's details.
