@@ -40,7 +40,7 @@ class MovieDetail extends Component {
                 releaseDate={releaseDate}
                 genres={genres} />
             </Grid>
-            <Grid item xs={12} spacing={16} className={classes.list}>
+            <Grid item xs={12} className={classes.list}>
               <List />
             </Grid>
           </Grid>

@@ -25,7 +25,7 @@ const ReleaseDate = ({ releaseDate, classes }) => (
 )
 
 ReleaseDate.propTypes = {
-  releaseDate: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string,
   classes: PropTypes.object.isRequired
 }
 

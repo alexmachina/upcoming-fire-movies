@@ -16,7 +16,7 @@ const MovieDetail = ({
     <Grid item xs={12} sm={6}>
       <Grid container className={classes.detailsContainer}>
         <Typography variant='subtitle1' className={classes.title}>{title}</Typography>
-        <Typography variant='body' className={classes.overview}>{overview}</Typography>
+        <Typography variant='body1' className={classes.overview}>{overview}</Typography>
         <ReleaseDate releaseDate={releaseDate} />
         <Grid container className={classes.genres}>
           {genres.map(({ id: genreId, name }) =>
@@ -30,13 +30,13 @@ const MovieDetail = ({
 )
 
 MovieDetail.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  genres: PropTypes.array.isRequired,
-  releaseDate: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  poster: PropTypes.string,
+  overview: PropTypes.string,
+  genres: PropTypes.array,
+  releaseDate: PropTypes.string,
   classes: PropTypes.object.isRequired
 }
 

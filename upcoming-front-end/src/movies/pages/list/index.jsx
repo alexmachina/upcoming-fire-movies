@@ -107,7 +107,7 @@ class List extends Component {
             hasMore={hasMore}
             loadMore={this.onLoadMore}
             initialLoad={false}
-            loader={<Loader />}>
+            loader={<Loader key='infinite-scroller-loader' />}>
 
             <Grid container className={classes.moviesList} spacing={16}>
               {movies.map(({ poster, title, id, releaseDate, genres }) => (
@@ -133,7 +133,6 @@ const mapStateToProps = ({ movies: { list: {
 } }) => ({
   movies,
   page,
-  query,
   hasMore: page < totalPages || totalPages === 0,
   loading,
   totalPages
@@ -144,7 +143,6 @@ List.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  query: PropTypes.string.isRequired,
   hasMore: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   location: PropTypes.object.isRequired,
